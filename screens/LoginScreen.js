@@ -4,22 +4,20 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  Platform,
-  StyleSheet,
-  ScrollView
+  StyleSheet
 } from 'react-native';
 
-import AntDesign from 'react-native-vector-icons'
+// import AntDesign from 'react-native-vector-icons'
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
-// import { AuthContext } from '../navigation/AuthProvider';
+import { AuthContext } from '../navigation/AuthProvider';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  // const { login, googleLogin, fbLogin } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -31,7 +29,7 @@ const LoginScreen = ({ navigation }) => {
 
       <FormInput
         labelValue={email}
-        onChangeText={(userEmail) => { }}
+        onChangeText={(userEmail) => setEmail(userEmail)}
         placeholderText="Email"
         iconType="user"
         keyboardType="email-address"
@@ -49,7 +47,7 @@ const LoginScreen = ({ navigation }) => {
 
       <FormButton
         buttonTitle="Sign In"
-        onPress={() => { }}
+        onPress={() => login(email, password)}
       />
 
       <TouchableOpacity style={styles.forgotButton} onPress={() => { }}>
